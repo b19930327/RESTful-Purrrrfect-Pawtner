@@ -1,0 +1,23 @@
+<%- include("partials/headers") %>
+<div class="ui main text container segment">
+	<div class="ui huge header">Edit <%= blog.title %></div>
+	<form class="ui form" action="/blogs/<%= blog._id %>?_method=PUT" method="POST">
+		<div class="field">
+			<label>Title</label> 
+			<input type="text" name="blog[title]" value="<%= blog.title %>"> 
+		</div>
+		<div class="field">
+			<label>Image</label>
+			<input type="text" name="blog[image]" value="<%= blog.image %>">
+		</div>
+		<div class="field">
+			<label>Content</label>
+			<textarea name="blog[body]"><%= blog.body %></textarea>
+		</div>		
+		<input class="ui violet basic button" type="submit">
+	</form>
+</div>
+<%- include("partials/footers") %>
+
+<!-- 沒辦法直接用PUT request去更新，html會默認是GET，所以就會導向SHOW PAGE with the blog._id。需npm install method-override然後搭配上面的?_method=PUT才能做到PUT request -->
+<!-- id和_id都是物件的id getter，id取得字串id，_id取得真正那個unique id -->
